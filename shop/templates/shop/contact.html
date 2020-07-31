@@ -1,0 +1,119 @@
+{% extends 'shop/basic.html'  %}
+{% block title %}Contact -{% endblock %}
+{% block css %}
+body{
+    background-color: white;
+}
+.contact{
+    padding: 4%;
+    height: 400px;
+}
+.col-md-3{
+    background: #ff9b00;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+.contact-info{
+    margin-top:10%;
+}
+.contact-info img{
+    margin-bottom: 15%;
+}
+.contact-info h2{
+    margin-bottom: 10%;
+}
+.col-md-9{
+    background: #fff;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+.contact-form label{
+    font-weight:600;
+}
+.contact-form button{
+    background: green;
+    color: white;
+    font-weight: 600;
+    width: 25%;
+}
+.contact-form button:focus{
+    box-shadow:none;
+}
+{% endblock %}
+{% block body %}
+<span id="main">
+<form action="/shop/contact/" method="POST"> {% csrf_token %}
+<div class="container contact">
+	<div class="row">
+		<div class="col-md-3">
+			<div class="contact-info">
+				<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+				<h2>Contact Us</h2>
+				<h4>We would love to hear from you !</h4>
+			</div>
+		</div>
+		<div class="col-md-9">
+			<div class="contact-form">
+				<div class="form-group">
+				  <label class="control-label col-sm" for="fname" id="name" name="name" aria-placeholder="name" >Name:</label>
+				  <div class="col-sm-10">          
+					<input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm" for="lname">Phone number:</label>
+				  <div class="col-sm-10">          
+					<input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Your Phone Number">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm" for="email">Email:</label>
+				  <div class="col-sm-10">
+					<input type="email" class="form-control" id="email" placeholder="Enter Your  Email" name="email">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label class="control-label col-sm" for="comment">How May We Help You?</label>
+				  <div class="col-sm-10">
+					<textarea class="form-control" rows="5" id="desc" name="desc" placeholder=""></textarea>
+				  </div>
+				</div>
+				<div class="form-group">        
+				  <div class="col-sm-offset-2 col-sm-10">
+
+					<button type="submit" class="btn btn-default" id="submit">Submit</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+</span>
+
+{%endblock%}
+{% block js %}
+
+<script>
+	{% if register %}
+document.getElementById('main').innerHTML = `<div class="alert alert-success alert-dismissible fade show container my-5" role="alert">
+    <h4 class="alert-heading">Success</h4>
+    <p>We got yuor our message we will look into it soon  </p>
+    <hr>
+    <p class="mb-0">Thanks for contacting us. our team will reach to you soon </p>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+	  <button type="button" class="btn btn-outline-success" id="done">Continue shopping</button>
+
+    </div>`
+    {% endif %}
+	$("#done").click(function(){
+    
+    document.location ="/shop";
+  });
+
+</script>
+{% endblock %}

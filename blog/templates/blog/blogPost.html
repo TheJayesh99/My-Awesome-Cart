@@ -1,0 +1,164 @@
+{% extends 'blog/basic.html' %}
+{% block css %}
+.col-md-3
+{
+display: inline-block;
+margin-left:-4px;
+}
+.carousel-indicators .active {
+background-color: blue;
+}
+.col-md-3 img{
+width: 170px;
+height: 200px;
+}
+.carousel-indicators li {
+    background-color: cadetblue;
+}
+body .carousel-indicator li{
+background-color: blue;
+}
+body .carousel-indicators{
+bottom: -18px;
+}
+body .carousel-control-prev-icon,
+body .carousel-control-next-icon{
+background-color: blue;
+}
+.carousel-control-prev,
+.carousel-control-next{
+top: auto;
+bottom: auto;
+padding-top: 100px;
+}
+body .no-padding{
+padding-left: 0,
+padding-right: 0;
+}
+{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-8 blog-main">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+                {{post.title}}
+            </h3>
+            
+   
+            <div class="blog-post">
+                <h2 class="blog-post-title">{{post.head0}}</h2>
+                <p class="blog-post-meta">{{post.pub_date}} by <a href="#">My new Cart</a></p>
+
+                <p>{{post.chead0}}</p>
+                
+                <h2>{{post.head1}}</h2>
+                <p> {{post.chead1}}</p>
+
+                
+                <h3> {{post.head2}} </h3>
+                <p> {{post.chead2}} </p>
+                
+                 <!-- like and share sections -->
+      
+            <div class="fb-like" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-width="5" data-layout="button_count" data-action="like" data-size="large" data-share="false"></div>
+            <div class="fb-share-button" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fblog%2FblogPost%2F1&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+          
+               
+            </div><!-- /.blog-post -->
+
+          
+
+
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">My Awesome Cart <em>started out as a small project and is now</em> the fastest growing e-commerce stores of all times in india and abroad.</p>
+            </div>
+
+           
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </aside><!-- /.blog-sidebar -->
+
+    </div>
+    <!-- facebook comment  section -->
+<div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogPost/{{post.post_id}}" data-numposts="5" data-width=""></div>
+
+</div>
+
+<div class="container">
+    <hr class="mt-5">
+<p>
+    <i>
+       <b> you can see some other blog here ...</b>
+    </i>
+</p>
+
+</div>
+
+
+
+
+
+
+<div class="container">
+    <!--Slideshow starts here -->
+  
+    <div class="row">
+        <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+               
+                
+            </ul>
+            <div class="container carousel-inner no-padding">
+                <div class="carousel-item active">
+                    {% for i in mypost %}
+                        {% if post.post_id != i.post_id  %}
+                        <div class="card" style="width: 100%; height: 200px;">
+                            <!-- <img class="card-img-top" src="/media/{{i.thumbnail}}" alt="Card image cap" > -->
+                            <div class="card-body">
+                             
+                                   
+                                <strong class="d-inline-block mb-2 text-primary">{{i.title}}</strong>
+                                <h3 class="mb-0">{{i.head0}}</h3>
+                                <div class="mb-1 text-muted">{{.pub_date}}</div>
+                                <p class="card-text mb-auto">{{i.chead0}}.
+                                <a href="/blog/blogPost/{{i.post_id}}" class="stretched-link">Continue reading</a>
+                   
+                            
+                           
+                   
+                            </div>
+                          </div>
+                         
+                    {% if not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %}
+                    {% endif %}
+                   
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- left and right controls for the slide -->
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+  
+</div>
+{% endblock %}

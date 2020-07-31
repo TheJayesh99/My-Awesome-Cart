@@ -1,0 +1,25 @@
+
+from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Blogpost
+
+# Create your views here.
+
+def index(request):
+    myposts = Blogpost.objects.all()
+    print(myposts)
+    return render(request,'blog/index.html',{'mypost':myposts})
+
+def blogPost(request,id):
+    myposts = Blogpost.objects.all()
+    post = Blogpost.objects.filter(post_id = id)[0]
+    return render(request,'blog/blogPost.html',{'post':post,'mypost':myposts})
+
+
+
+
+
+    
+
+
+
