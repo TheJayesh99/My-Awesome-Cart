@@ -6,7 +6,7 @@
     <div class="col my-4">
         <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
         <div class="my-4">
-            <ul class="list-group" id="items">
+            <ul class="list-group" id="itemsss">
             </ul>
 
             <nav aria-label="breadcrumb">
@@ -83,8 +83,8 @@ if ($.isEmptyObject(cart)) {
     $('#items').append(mystr);
 } else {
     for (item in cart) {
-        let name = cart[item][1];
         let qty = cart[item][0];
+        let name = cart[item][1];
         let itemPrice = cart[item][2];
         sum = sum + qty;
         totalPrice = totalPrice + qty* itemPrice;
@@ -92,7 +92,7 @@ if ($.isEmptyObject(cart)) {
                     ${name}
                     <span class="badge badge-primary badge-pill">${qty}</span>
                 </li>`
-        $('#items').append(mystr);
+        $('#itemsss').append(mystr);
     }
 }
 document.getElementById('cart').innerHTML = sum;
