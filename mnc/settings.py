@@ -25,7 +25,7 @@ SECRET_KEY = 'v1@y^v)f*c2=th(10zuxfy)nq+4&=&nq2b%$#7q_azf_w)om9l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','mynewcart.herokuapp.com']
 
 
 # Application definition
